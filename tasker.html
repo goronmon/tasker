@@ -1,6 +1,10 @@
 <div>
-    {{.Title}}
-</div>
-<div>
-    {{.Text}}
+    <ul>
+        {{ $tasks := . }}
+        {{range $index, $task := $tasks }}
+            <li>
+            Title: {{ $element.taskName }} = {{ $element.taskTimeSpent }} seconds
+            </li>
+        {{end}}
+
 </div>
