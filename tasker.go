@@ -36,6 +36,8 @@ func main() {
 	}
 
 	db.Select(&tasks, "SELECT * FROM task")
+
+	// Debug section
     task1 := Task{} 
     if len(tasks) > 0 {
         task1 = tasks[0]
