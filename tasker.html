@@ -3,7 +3,7 @@
         {{ $tasks := . }}
         {{range $index, $task := $tasks }}
             <li>
-            Title: {{ $element.taskName }} = {{ $element.taskTimeSpent }} seconds
+            Title: {{ $task.taskName }} = {{ $task.taskTimeSpent }} seconds
             </li>
         {{end}}
 
