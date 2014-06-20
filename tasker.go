@@ -21,7 +21,6 @@ type Task struct {
     taskName string
     taskCreated time.Time
     taskTimeSpent int64 
-
 }
 
 func taskerHandler(w http.ResponseWriter, r *http.Request) {
