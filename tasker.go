@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
@@ -13,10 +14,9 @@ import (
 var tasks = []Task{}
 
 type Task struct {
-	taskID        int
-	taskName      string
-	taskCreated   time.Time
-	taskTimeSpent int64
+	TaskName      sql.NullString `db:"task_name"`
+	TaskCreated   time.Time      `db:"task_created"`
+	TaskTimeSpent int64          `db:"task_time_spent"`
 }
 
 func taskerHandler(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +35,11 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	db.Select(&tasks, "SELECT * FROM task")
+	err = db.Select(&tasks, "SELECT task_name, task_created, task_time_spent FROM task")
+
+	if err != nil {
+		log.Print(err)
+	}
 
 	// Debug section
 	task1 := Task{}
