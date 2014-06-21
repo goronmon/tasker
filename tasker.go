@@ -2,7 +2,7 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
+	_ "fmt"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"html/template"
@@ -40,13 +40,6 @@ func main() {
 	if err != nil {
 		log.Print(err)
 	}
-
-	// Debug section
-	task1 := Task{}
-	if len(tasks) > 0 {
-		task1 = tasks[0]
-	}
-	fmt.Printf("%#v\n%#v", task1, tasks)
 
 	http.HandleFunc("/tasker/", taskerHandler)
 	http.HandleFunc("/", rootHandler)
